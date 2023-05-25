@@ -1,5 +1,10 @@
 import {useEffect, useState } from 'react'
+
 import './App.css'
+import ProductPage from './ProductPage';
+import Products from './ProductListing';
+import { BrowserRouter as Router,Link,Route} from "react-router-dom";
+import { Routes} from 'react-router-dom';
 
 //import CardComponent from './Components/Card';
 
@@ -17,55 +22,22 @@ import './App.css'
 
 function App() {
 
+
+
   
-  const [count, setCount] = useState(0)
-
-  //set state for array of products data.
-  const [products, setProducts] = useState([]);
-
-
-  //useEffect for the API call on each render
-  useEffect(() => {
-    
-    fetch('https://mock.shop/api?query={products(first:%2020){edges%20{node%20{id%20title%20description%20featuredImage%20{id%20url}%20variants(first:%203){edges%20{node%20{price%20{amount%20currencyCode}}}}}}}}')
-      .then(response => {
-        return response.json()
-      })
-    
-      .then(data => {
-        
-        //console.log(data.data.products.edges)
-        setProducts(data.data.products.edges)
-      })
-    },[])
-
-
-
     return (
+      
       <>
-      <h1 className="text-4xl font-bold mb-5">
-      Our Products
-    </h1>
-      <div className="grid grid-cols-4 gap-4">
- 
- 
-      {products.map(product => 
-<div className=''>
-        <div className="card "  key={product.id}>
-
-<img src={product.node.featuredImage.url}></img>
-<div className="card-section">
-  <h4>{product.node.title}</h4>
-  <p>{product.node.description}</p>
-</div>
-</div>
-      </div>
+   <Router>
+      <Routes>
+      <Route path={"/"} element={<Products />}></Route>
+      <Route path={"/product/:title"} element={<ProductPage />}>
      
-      )}
 
+     
+      </Route></Routes>
 
-
-      </div>
+     </Router>
     </>
     );
   }

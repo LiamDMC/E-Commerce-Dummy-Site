@@ -35,28 +35,27 @@ function Products(){
     return (
       <>
      
-      <div className="ProductRange">
-       <h1 className="text-4xl font-bold mb-5">
+      <div className="ProductRange p-12">
+       <h1 className="text-4xl font-bold mb-5 text-left">
     Our Products
   </h1>
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-4 gap-8">
 
 
     {products.map((product,index)=> 
 <div className='' key={product.index}>
+<Link to={"/product/"+product.node.title} state={product.node} className="text-black font-normal">
       <div className="card "  >
 
 <img src={product.node.featuredImage.url}></img>
-<div className="card-section">
+<div className="card-section p-2 text-left">
 <h4>{product.node.title}</h4>
-<Link to={"/product/"+product.node.title} state={product.node}>View Product</Link>
 
-{/*<a key={index} href={"/"+product.title}>test</a>
-<button > View Product </button> *}
-{/*<p>{product.node.description}</p>*/}
 </div>
 </div>
+</Link>
     </div>
+    
    
     )}
 

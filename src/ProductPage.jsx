@@ -16,11 +16,58 @@ function ProductPage() {
   //Grab state data from selected product
  const location = useLocation();
 const data = location.state;
-console.log(data);
- 
+//console.log(data);
+const price = data.variants.edges[0].node.price.amount
+
+const convertedPrice=parseInt(price);
+
 
 //Use Context / Data for basket
+const{setCart}=useContext(CartContext);
 const{cart}=useContext(CartContext);
+
+
+const{setTotal}=useContext(CartContext);
+const{total}=useContext(CartContext);
+
+//console.log(cart[0].total);
+
+function addToCart(){
+  SetDisplayCart(true);
+
+
+if(total==0){
+  //console.log("emptytotal");
+
+
+  setTotal(parseInt(convertedPrice));
+
+  setCart([
+    {
+
+    price:price,
+    title:data.title,
+    image:data.featuredImage.url
+  }
+]);
+
+
+
+}
+else{
+  
+  setTotal((prevVals) =>parseInt(prevVals+convertedPrice));
+  setCart((prevVals) => [...prevVals,
+    
+    {
+    price:price,
+    title:data.title,
+    image:data.featuredImage.url
+  
+}])
+
+}
+}
 
 //Variants
 
@@ -28,8 +75,8 @@ const{cart}=useContext(CartContext);
   
       return (
 <div>
-<Link to={"/"} className="absolute left-12 top-4" >Back &#62;</Link>
-{displayCart ? <DisplayCart/> : null}
+<Link to={"/"} className="absolute left-12 top-4 text-black" >Back &#62;</Link>
+{displayCart ? <DisplayCart displayCart={displayCart} SetDisplayCart={SetDisplayCart}/> : null}
         <div className="grid grid-cols-2 gap-2 p-12">
         <div className="col-span-1">
         
@@ -37,9 +84,10 @@ const{cart}=useContext(CartContext);
         </div>
 
         <div className="col-span-1 pl-4 text-left relative">
-        <h2 className="font-bold mb-6 text-lg">{data.title}</h2>
-        <h3>{data.description}</h3>
-        <button onClick={() => SetDisplayCart(true)} className="absolute bottom-0 bg-blue-400" >Add to Cart</button>
+        <h2 className="font-bold  inline text-3xl ">{data.title}</h2> <p className="text-3xl font-bold inline float-right">£{price}</p>
+        <h3 className="mt-6">{data.description}</h3>
+       
+        <button onClick={addToCart} className="mt-12 bg-blue-400" >Add to Cart</button>
         </div>
         
         

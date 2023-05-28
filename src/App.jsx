@@ -23,12 +23,23 @@ import { useState } from 'react';
 
 function App() {
 
-const [cart,setCart]=useState("test");
+const [cart,setCart]=useState([
+
+  {
+    
+    price:"",
+    title:"",
+    image:"",
+  }
+]);
+
+const [total,setTotal]=useState(0);
+
 
   
     return (
       
-      <CartContext.Provider value={{cart,setCart}}>
+      <CartContext.Provider value={{cart,setCart,total,setTotal}}>
    <Router>
       <Routes>
       <Route path={"/"} element={<Products />}></Route>

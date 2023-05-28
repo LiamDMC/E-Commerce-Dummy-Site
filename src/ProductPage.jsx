@@ -23,13 +23,23 @@ const{cart}=useContext(CartContext);
 
   
       return (
-
-        <div className="grid grid-cols-2 gap-2">
-        {displayCart ? <DisplayCart/> : null}
-        <button onClick={() => SetDisplayCart(true)}>Add to Cart</button>
-        <h1>{data.title}</h1>
+<div>
+{displayCart ? <DisplayCart/> : null}
+        <div className="grid grid-cols-2 gap-2 p-12">
+        <div className="col-span-1">
+        <Link to={"/"} >Back</Link>
       <img src={data.featuredImage.url}></img>
-      <Link to={"/"} >Back</Link>
+        </div>
+
+        <div className="col-span-1">
+        <h1>{data.title}</h1>
+        <button onClick={() => SetDisplayCart(true)}>Add to Cart</button>
+        </div>
+        
+        
+       
+   
+    </div>
     </div>
       );
     }

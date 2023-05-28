@@ -7,8 +7,8 @@ function DisplayCart(){
 
 
 return(
-<div>
-{cart}
+<div className="bg-white absolute h-screen w-96 right-0">
+<p className="font-black">{cart}</p>
 </div>
 );
 

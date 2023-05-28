@@ -1,10 +1,11 @@
-import {useEffect, useState } from 'react'
-
 import './App.css'
 import ProductPage from './ProductPage';
 import Products from './ProductListing';
-import { BrowserRouter as Router,Link,Route} from "react-router-dom";
+import { BrowserRouter as Router,Route} from "react-router-dom";
 import { Routes} from 'react-router-dom';
+import  {CartContext}  from './createCartContext';
+import { useState } from 'react';
+//import { createContext } from 'react';
 
 //import CardComponent from './Components/Card';
 
@@ -22,12 +23,12 @@ import { Routes} from 'react-router-dom';
 
 function App() {
 
-
+const [cart,setCart]=useState("test");
 
   
     return (
       
-      <>
+      <CartContext.Provider value={{cart,setCart}}>
    <Router>
       <Routes>
       <Route path={"/"} element={<Products />}></Route>
@@ -38,7 +39,7 @@ function App() {
       </Route></Routes>
 
      </Router>
-    </>
+     </CartContext.Provider>
     );
   }
   

@@ -1,10 +1,12 @@
 import React from "react";
 import { useState,useEffect } from "react";
 import { BrowserRouter as Router,Link,Route } from "react-router-dom";
+import DisplayCart from "./Components/Cart";
 
 
 function Products(){
- 
+  //Show Cart
+  const[displayCart,SetDisplayCart]=useState(false);
 
 
   //set state for array of products data.
@@ -26,12 +28,17 @@ function Products(){
       })
     },[])
 
+function cartDisplay(){
+  SetDisplayCart(true);
 
+}
 
     return (
       <>
-     
+     <div>
+     {displayCart ? <DisplayCart displayCart={displayCart} SetDisplayCart={SetDisplayCart}/> : null}
       <div className="ProductRange p-12">
+      <p onClick={cartDisplay}>Cart</p>
        <h1 className="text-4xl font-bold mb-5 text-left">
     Our Products
   </h1>
@@ -61,7 +68,7 @@ function Products(){
     </div>
     </div>
 
-
+</div>
     </>
     );
   }

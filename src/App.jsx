@@ -30,6 +30,7 @@ const [cart,setCart]=useState([
     price:"",
     title:"",
     image:"",
+    quantity:0
   }
 ]);
 
@@ -42,7 +43,7 @@ const [total,setTotal]=useState(0);
       <CartContext.Provider value={{cart,setCart,total,setTotal}}>
    <Router>
       <Routes>
-      <Route path={"/"} element={<Products />}></Route>
+      <Route path={"/"} element={<Products />} ></Route>
       <Route path={"/product/:title"} element={<ProductPage />}>
      
 

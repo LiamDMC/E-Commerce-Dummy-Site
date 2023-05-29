@@ -47,7 +47,8 @@ if(total==0){
 
     price:price,
     title:data.title,
-    image:data.featuredImage.url
+    image:data.featuredImage.url,
+    quantity:1
   }
 ]);
 
@@ -62,8 +63,8 @@ else{
     {
     price:price,
     title:data.title,
-    image:data.featuredImage.url
-  
+    image:data.featuredImage.url,
+      quantity:1,
 }])
 
 }

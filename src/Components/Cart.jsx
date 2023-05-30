@@ -53,14 +53,28 @@ return itemMatch;
  return itemMatch;
  
  }
- 
+
      )
     
  setCart(newQuantities);
    } 
    
- 
+ //Delete Item from Cart
+function DeleteItem(item){
+  console.log(item.title);
 
+  const RemoveItem = cart.filter(list => list.title != item.title);
+ 
+  
+  setCart(RemoveItem);
+
+  const price=parseInt(item.price)
+  const TotalPrice=parseInt(price*item.quantity);
+  //console.log(price*item.quantity);
+  
+
+  setTotal((prevVals) =>parseInt(prevVals-TotalPrice));
+}
    
 
 return(
@@ -77,7 +91,10 @@ return(
  </div>
   
  <div className="col-span-1 text-left ">
- <p className=" pt-6 align-middle pl-5">{items.title}</p>
+ <p className=" pt-6 align-middle  inline">{items.title}</p>
+ <button className="inline ml-5 bg-transparent" onClick={() => { 
+  DeleteItem(cart[i]);        
+}}>Delete</button>
   <p className=" pt-6 ">£{items.price * items.quantity}</p>
   <div><p className="inline">Qty:</p> 
 <p className="inline"> {items.quantity}</p>

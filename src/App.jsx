@@ -5,9 +5,7 @@ import { BrowserRouter as Router,Route} from "react-router-dom";
 import { Routes} from 'react-router-dom';
 import  {CartContext}  from './createCartContext';
 import { useState } from 'react';
-//import { createContext } from 'react';
 
-//import CardComponent from './Components/Card';
 
 /*-- To Do -- 
 1.Establish data call and data required to display 
@@ -22,7 +20,7 @@ import { useState } from 'react';
 
 
 function App() {
-
+//set State of cart - to be used globally with useContext
 const [cart,setCart]=useState([
 
   {
@@ -33,13 +31,13 @@ const [cart,setCart]=useState([
     quantity:0
   }
 ]);
-
+//set State of Total of cart - to be used globally with useContext
 const [total,setTotal]=useState(0);
 
 
   
     return (
-      
+      //Set the dynamic routes and provide the values of the createContext
       <CartContext.Provider value={{cart,setCart,total,setTotal}}>
    <Router>
       <Routes>

@@ -7,25 +7,20 @@ function DisplayCart(props){
     const{cart}=useContext(CartContext);
     const{setCart}=useContext(CartContext);
     const{total}=useContext(CartContext);
+    const{setTotal}=useContext(CartContext);
 
     //handle Quantities
 
-//Remove Quantity
+//Remove Quantity of item
    function removeQuantity(item){
 
     
    const newQuantities=cart.map((itemMatch,i) =>  
 {if(itemMatch.title == item.title){
- 
-  itemMatch.price=item.price;
-  itemMatch.image=item.image;
-  itemMatch.title=item.title;
- itemMatch.quantity=item.quantity-1;
+  const price=parseInt(itemMatch.price)
+  setTotal((prevVals) =>parseInt(prevVals-price));
+  itemMatch.quantity=item.quantity-1;
 
- //console.log(itemMatch)
-  
-}if(itemMatch.quantity == -1){
-console.log("need to delete from state")
 }
 return itemMatch;
 
@@ -38,21 +33,16 @@ setCart(newQuantities);
   
 
   
-   //Add Quantity
+   //Add Quantity of item
   function addQuantities(item){
 
     
     const newQuantities=cart.map((itemMatch,i) =>  
  {if(itemMatch.title == item.title){
-
-
-
-
   itemMatch.quantity=item.quantity+1;
-  itemMatch.price=item.price;
-  
+  const price=parseInt(itemMatch.price)
+  setTotal((prevVals) =>parseInt(prevVals+price));
 
-console.log(itemMatch.quantity)
    
  }else{
  
@@ -62,7 +52,7 @@ console.log(itemMatch.quantity)
  }
  
      )
-   
+  //const filteredList=newQuantities.filter(list =>list.quantity >=0){};
  setCart(newQuantities);
    } 
    
@@ -85,9 +75,9 @@ return(
   
  <div className="col-span-1 text-left ">
  <p className=" pt-6 align-middle pl-5">{items.title}</p>
-  <p className=" pt-6 ">£{items.price}</p>
+  <p className=" pt-6 ">£{items.price * items.quantity}</p>
   <div><p className="inline">Qty:</p> 
-<p className="inline">{items.quantity}</p>
+<p className="inline"> {items.quantity}</p>
 <button className="ml-5 bg-transparent" onClick={() => { 
   removeQuantity(cart[i]);        
 }} >-</button><button className="bg-transparent"  onClick={() => { 

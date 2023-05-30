@@ -27,8 +27,11 @@ return itemMatch;
 }
 
     )
-  
-setCart(newQuantities);
+    //Need to filter out the list to check if they have 0 quantity to remove item
+    const filteredList = newQuantities.filter(list => list.quantity >= 1);
+    console.log(filteredList);
+  setCart(filteredList);
+
   } 
   
 
@@ -52,7 +55,7 @@ setCart(newQuantities);
  }
  
      )
-  //const filteredList=newQuantities.filter(list =>list.quantity >=0){};
+    
  setCart(newQuantities);
    } 
    
